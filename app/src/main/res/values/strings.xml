@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RequestTest</string>
+    <string name="api_hint">http://……（点击编辑）</string>
+</resources>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="接口地址"
+                    android:textColor="@color/text_black_a"
+                    android:textSize="@dimen/text_size_b_14" />
+
+                <Button
+                    android:id="@+id/btn_setting"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/selector_setting" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_api"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_edit"
+                android:hint="长按可粘贴"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="请求方式"
+                    android:textColor="@color/text_black_a"
+                    android:textSize="@dimen/text_size_b_14" />
+
+                <RadioGroup
+                    android:id="@+id/rg_request_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="14dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_get"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="GET"
+                        android:textColor="@color/text_black_b" />
+
+                    <RadioButton
+                        android:id="@+id/rb_post"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="POST"
+                        android:textColor="@color/text_black_b" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_params"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请求参数"
+                        android:textColor="@color/text_black_a"
+                        android:textSize="@dimen/text_size_b_14" />
+
+                    <Button
+                        android:id="@+id/btn_plus_params"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@drawable/selector_plus" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_params_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_edit"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="KEY"
+                            android:textColor="#47a9b7"
+                            android:textSize="@dimen/text_size_b_14" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="VALUE"
+                            android:textColor="#47a9b7"
+                            android:textSize="@dimen/text_size_b_14" />
+
+                        <Space
+                            android:layout_width="22dp"
+                            android:layout_height="22dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="请求结果"
+                        android:textColor="@color/text_black_a"
+                        android:textSize="@dimen/text_size_b_14" />
+
+                    <Button
+                        android:id="@+id/btn_clear"
+                        android:layout_width="60dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/selector_clear_bg"
+                        android:text="清除"
+                        android:textColor="@color/text_black_c"
+                        android:textSize="@dimen/text_size_a_12" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/text_black_c"
+                    android:textSize="14sp"
+                    android:textIsSelectable="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_request"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_request_bg"
+        android:text="request"
+        android:textColor="#fff"
+        android:textSize="@dimen/text_size_b_14" />
+
+</LinearLayout>

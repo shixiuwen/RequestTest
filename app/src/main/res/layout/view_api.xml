@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/et_api"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textColor="@color/text_black_c"
+        android:textSize="@dimen/text_size_a_12"
+        android:hint="输入API前缀,如 http://"
+        android:gravity="center_vertical"
+        android:background="#0000"/>
+
+    <Button
+        android:id="@+id/btn_delete_api"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/selector_delete"/>
+
+    <RadioButton
+        android:id="@+id/rb_check"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:button="@null"
+        android:background="@drawable/selector_check"
+        android:layout_marginLeft="16dp"/>
+
+</LinearLayout>
