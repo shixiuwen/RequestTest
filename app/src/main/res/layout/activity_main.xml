@@ -165,8 +165,13 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
+                    <shixia.requesttest.view.ParamsView
+                        android:id="@+id/pv_default"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:pv_is_plus_visible="false"/>
 
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -1,5 +1,7 @@
 package shixia.requesttest;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int JSON_INDENT = 4;
 
+    private ParamsView pvDefault;
+
     private Button btnSetting;
     private EditText etApi;
     private RadioGroup rgRequestType;
@@ -69,7 +73,11 @@ public class MainActivity extends AppCompatActivity {
         llResult = (LinearLayout) findViewById(R.id.ll_result);
         tvResult = (TextView) findViewById(R.id.tv_result);
 
+        pvDefault = (ParamsView) findViewById(R.id.pv_default);
+
         initDate();
+
+        setParamsViewListener(pvDefault);
 
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         String key = params.get("key");
                         String value = params.get("value");
                         if (!TextUtils.isEmpty(key)) {
+                            Toast.makeText(context, "key:" + key + " value" + value, Toast.LENGTH_SHORT).show();
                             map.put(key, value);
                         }
                     }
@@ -170,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
                         llResult.setVisibility(View.VISIBLE);
                         tvResult.setText(message);
+                        copy(message);
                     }
                 });
                 try {
@@ -204,34 +214,34 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //默认参数
-
         paramsCount = SpUtils.getInt(this, SpUtils.PARAMS_COUNT, 0);
         paramsViewList.clear();
+        paramsViewList.add(pvDefault);
         int childCount = llParamsMap.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            if (i != 0) {
+            if (i != 0 && i != 1) {
                 llParamsMap.removeView(llParamsMap.getChildAt(i));
             }
         }
 
-        if (paramsCount == 0) {
+        for (int i = 0; i < paramsCount; i++) {
+
+            String param = SpUtils.getString(this, SpUtils.PARAMS_KEY_VALUE_ + i, "");
+            Log.e("param", param);
+
+            if (i == 0) {
+                pvDefault.setKeyAndValue(param);
+                continue;
+            }
+
             ParamsView paramsView = new ParamsView(MainActivity.this);
-            paramsView.setDelVisible(false);
+            paramsView.setDelVisible(true);
+            paramsView.setKeyAndValue(param);
             llParamsMap.addView(paramsView);
             paramsViewList.add(paramsView);
             setParamsViewListener(paramsView);
-        } else {
-            for (int i = 0; i < paramsCount; i++) {
-                String api = SpUtils.getString(this, SpUtils.PARAMS_KEY_VALUE_ + i, "");
-                Log.e("api", api);
-                ParamsView paramsView = new ParamsView(MainActivity.this);
-                paramsView.setDelVisible(true);
-                paramsView.setKeyAndValue(api);
-                llParamsMap.addView(paramsView);
-                paramsViewList.add(paramsView);
-                setParamsViewListener(paramsView);
-            }
         }
+
     }
 
     private void setParamsViewListener(final ParamsView paramsView) {
@@ -249,5 +259,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         initDate();
+    }
+
+    private void copy(String message) {
+        //开启自动复制到剪切板
+        if (SpUtils.getString(context, SpUtils.AUTO_SAVE_TO_PLATE, "YES").equals("YES")) {
+            ClipboardManager mg = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            ClipData myClip = ClipData.newPlainText("text", message);
+            mg.setPrimaryClip(myClip);
+            Toast.makeText(context, "结果已复制到剪切板", Toast.LENGTH_SHORT).show();
+        }
     }
 }

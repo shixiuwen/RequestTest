@@ -84,7 +84,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -198,7 +198,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -247,11 +247,27 @@
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/selector_request_bg"
         android:text="SAVE"
         android:textColor="#fff"
         android:textSize="@dimen/text_size_b_14" />
+
+    <TextView
+        android:id="@+id/tv_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="关于"
+        android:textSize="@dimen/text_size_b_14"
+        android:textColor="#2e919e"/>
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="2px"
+        android:background="#2e919e"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"/>
 
 </LinearLayout>

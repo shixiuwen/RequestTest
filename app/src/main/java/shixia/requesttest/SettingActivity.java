@@ -1,5 +1,6 @@
 package shixia.requesttest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class SettingActivity extends AppCompatActivity {
     private RadioButton rbYes;
     private RadioButton rbNo;
     private Button btnSave;
+    private TextView tvAbout;
 
     private List<ApiView> apiViewList = new ArrayList<>();
     private List<ParamsView> paramsViewList = new ArrayList<>();
@@ -65,6 +68,7 @@ public class SettingActivity extends AppCompatActivity {
         rbYes = (RadioButton) findViewById(R.id.rb_yes);
         rbNo = (RadioButton) findViewById(R.id.rb_no);
         btnSave = (Button) findViewById(R.id.btn_save);
+        tvAbout = (TextView) findViewById(R.id.tv_about);
 
         initData();
 
@@ -132,6 +136,14 @@ public class SettingActivity extends AppCompatActivity {
                 setResult(0);
 
                 finish();
+            }
+        });
+
+        tvAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, AboutActivity.class);
+                startActivity(intent);
             }
         });
 
