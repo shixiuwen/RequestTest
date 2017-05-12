@@ -1,7 +1,7 @@
 # RequestTest
 Android接口测试App，界面简单，使用方便，能够有效节省开发过程中接口的测试时间
 
-[**下载apk**](http://www.baidu.com)
+[**下载apk**](https://github.com/shixiuwen/RequestTest/blob/master/apk/app-debug.apk?raw=true)
 
 #### 主界面：
 
