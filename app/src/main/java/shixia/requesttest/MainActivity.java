@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sApi = etApi.getText().toString();
+
                 if (TextUtils.isEmpty(sApi)) {
                     Toast.makeText(context, "请输入接口", Toast.LENGTH_SHORT).show();
                     return;
@@ -127,24 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 LoadingDialog.getInstance(context, "加载中……").show();
 
                 BaseHttpApi api = new BaseHttpApi();
-
-                if (rgRequestType.getCheckedRadioButtonId() == R.id.rb_get) {
-                    api.get(sApi);
-                } else {
-                    ArrayMap<String, String> map = new ArrayMap<>();
-                    for (ParamsView paramsView : paramsViewList) {
-                        Map<String, String> params = paramsView.getParams();
-                        String key = params.get("key");
-                        String value = params.get("value");
-                        if (!TextUtils.isEmpty(key)) {
-                            Toast.makeText(context, "key:" + key + " value" + value, Toast.LENGTH_SHORT).show();
-                            map.put(key, value);
-                        }
-                    }
-
-                    BaseHttpRequest request = new BaseHttpRequest(map);
-                    api.setRequest(request);
-                }
 
                 api.setOnJsonHttpResponseListener(new BaseHttpApi.OnJsonHttpResponseListener() {
                     @Override
@@ -182,11 +165,30 @@ public class MainActivity extends AppCompatActivity {
                         copy(message);
                     }
                 });
-                try {
-                    api.post(etApi.getText().toString());
-                } catch (IllegalArgumentException e) {
-                    Toast.makeText(MainActivity.this, "请输入正确的api地址！", Toast.LENGTH_SHORT).show();
-                    LoadingDialog.getInstance(context, "加载中……").dismiss();
+
+                if (rgRequestType.getCheckedRadioButtonId() == R.id.rb_get) {
+                    api.get(sApi);
+                } else {
+                    ArrayMap<String, String> map = new ArrayMap<>();
+                    for (ParamsView paramsView : paramsViewList) {
+                        Map<String, String> params = paramsView.getParams();
+                        String key = params.get("key");
+                        String value = params.get("value");
+                        if (!TextUtils.isEmpty(key)) {
+                            Toast.makeText(context, "key:" + key + " value" + value, Toast.LENGTH_SHORT).show();
+                            map.put(key, value);
+                        }
+                    }
+
+                    BaseHttpRequest request = new BaseHttpRequest(map);
+                    api.setRequest(request);
+
+                    try {
+                        api.post(etApi.getText().toString());
+                    } catch (IllegalArgumentException e) {
+                        Toast.makeText(MainActivity.this, "请输入正确的api地址！", Toast.LENGTH_SHORT).show();
+                        LoadingDialog.getInstance(context, "加载中……").dismiss();
+                    }
                 }
             }
         });
@@ -209,8 +211,10 @@ public class MainActivity extends AppCompatActivity {
         String defaultRequestType = SpUtils.getString(this, SpUtils.DEFAILT_REQUEST_TYPE, "POST");
         if (TextUtils.equals(defaultRequestType, "POST")) {
             rgRequestType.check(R.id.rb_post);
+            llParams.setVisibility(View.VISIBLE);
         } else {
             rgRequestType.check(R.id.rb_get);
+            llParams.setVisibility(View.GONE);
         }
 
         //默认参数
