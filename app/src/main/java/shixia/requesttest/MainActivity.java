@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                         String key = params.get("key");
                         String value = params.get("value");
                         if (!TextUtils.isEmpty(key)) {
-                            Toast.makeText(context, "key:" + key + " value" + value, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "key:" + key + " value:" + value, Toast.LENGTH_SHORT).show();
                             map.put(key, value);
                         }
                     }
